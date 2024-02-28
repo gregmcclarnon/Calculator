@@ -1,0 +1,17 @@
+.flex-container{
+    display:flex;
+    flex-wrap:wrap;
+    width:150px;
+}
+
+.flex-item{
+    flex: 1;
+}
+
+#result{
+    width:150px;
+}
+
+button{
+    width:37.5px;
+}
