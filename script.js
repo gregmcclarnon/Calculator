@@ -1,11 +1,12 @@
-// VARIABLES
+// GLOBAL VARIABLES
 
 let a = 0;
 let operator = "";
 let b = 0;
 let result = 0;
 
-// FUNCTIONS
+// CALCULATOR FUNCTIONS
+// The result is passed to the result variable
 
 // ADD
 
@@ -31,33 +32,30 @@ function divide(a,b) {
     result = a / b;
 }
 
-// Operate
+// OPERATE FUNCTION
+// Looks at the operator and calls the correct CALCULATION function
 
 function operate(a,operator,b) {
-
     if(operator == "+") {
         add(a,b);
     }
 
     if(operator == "-") {
-        return subtract(a,b);
+        subtract(a,b);
     }
 
     if(operator == "x" || operator == "*") {
-        return multiply(a,b);
+        multiply(a,b);
     }
 
     if(operator == "/") {
-        return divide(a,b);
-    }
-
-
-    
+        divide(a,b);
+    }    
 }
 
-let display = document.getElementById('display');
+// Assigns HTML elements to JS variables
 
-// Event listeners for buttons
+let display = document.getElementById('display');
 
 let button7 = document.getElementById('7');
 let button8 = document.getElementById('8');
@@ -76,10 +74,13 @@ let buttonPlus = document.getElementById('+');
 
 let button0 = document.getElementById('0');
 let buttonDot = document.getElementById('.');
+let buttonDivide = document.getElementById('/');
 let buttonAC = document.getElementById('AC');
 let buttonEquals = document.getElementById('=');
 
+// Creates event listeners for buttons and when clicked adds the value to the display
 
+// NUMBERS
 
 button1.addEventListener('click', function() {
     display.value += 1;
@@ -117,6 +118,24 @@ button9.addEventListener('click', function() {
     display.value += 9;
 });
 
+button0.addEventListener('click', function() {
+    display.value += 0;
+});
+
+// DECIMAL and AC buttons
+
+buttonDot.addEventListener('click', function() {
+    display.value += ".";
+    // Could introduce a bug. Should the . be a string or integer?
+});
+
+buttonAC.addEventListener('click', function() {
+    display.value = "";
+    a = "";
+    b = "";
+    operator = "";
+});
+
 // OPERATORS
 
 buttonPlus.addEventListener('click', function() {
@@ -126,6 +145,31 @@ buttonPlus.addEventListener('click', function() {
     console.log(operator);
     display.value = "";
 });
+
+buttonSubtract.addEventListener('click', function() {
+    a = parseFloat(display.value);
+    operator = "-";
+    console.log(a);
+    console.log(operator);
+    display.value = "";
+});
+
+buttonMultiply.addEventListener('click', function() {
+    a = parseFloat(display.value);
+    operator = "*";
+    console.log(a);
+    console.log(operator);
+    display.value = "";
+});
+
+buttonDivide.addEventListener('click', function() {
+    a = parseFloat(display.value);
+    operator = "/";
+    console.log(a);
+    console.log(operator);
+    display.value = "";
+});
+
 
 
 
@@ -143,23 +187,20 @@ buttonEquals.addEventListener('click', function() {
 
     display.value = result;
 
-    // if(operator=="+") {
-    //     let result = add(a,"+",b);
-    //     console.log(result);
-    //     display.value = result;
-    // }
 });
 
 
 
 // TESTING
-console.log(add(2,2));
-console.log(subtract(2,2));
-console.log(multiply(2,2));
-console.log(divide(2,2));
 
-console.log(operate(2,"+",5));
-console.log(operate(2,"-",5));
-console.log(operate(2,"x",5));
-console.log(operate(2,"*",5));
-console.log(operate(2,"/",5));
+
+// console.log(add(2,2));
+// console.log(subtract(2,2));
+// console.log(multiply(2,2));
+// console.log(divide(2,2));
+
+// console.log(operate(2,"+",5));
+// console.log(operate(2,"-",5));
+// console.log(operate(2,"x",5));
+// console.log(operate(2,"*",5));
+// console.log(operate(2,"/",5));
